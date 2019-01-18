@@ -42,4 +42,4 @@ EXPOSE 3310
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
-CMD ["sudo /bootstrap.sh"]
+CMD ["/bootstrap.sh"]
