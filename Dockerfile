@@ -27,8 +27,12 @@ RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
 RUN mkdir /var/run/clamav && \
     chown clamav:clamav /var/run/clamav && \
     chmod 750 /var/run/clamav && \
-    chmod 777 /var/log/clamav
-
+    chmod 777 /var/log/clamav && \
+    touch /var/log/clamav/freshclam.log && \
+    chmod 777 /var/log/clamav/freshclam.log && \
+    touch /var/log/clamav/clamav.log && \
+    chmod 777 /var/log/clamav/clamav.log
+    
 # av configuration update
 RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
     echo "TCPSocket 3310" >> /etc/clamav/clamd.conf && \
