@@ -18,6 +18,10 @@ RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-fr
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN chmod -R 777 /var
+
+RUN chmod -R 777 /var/log
+
 # initial update of av databases
 RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
     wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \
@@ -27,8 +31,7 @@ RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
 # permission juggling
 RUN mkdir /var/run/clamav && \
     chown clamav:clamav /var/run/clamav && \
-    chmod 750 /var/run/clamav && \
-    chmod -R 777 /var
+    chmod 750 /var/run/clamav
 
 # av configuration update
 RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
