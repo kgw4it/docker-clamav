@@ -9,6 +9,7 @@ RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-fr
     echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION-updates main contrib non-free" >> /etc/apt/sources.list && \
     echo "deb http://security.debian.org/ $DEBIAN_VERSION/updates main contrib non-free" >> /etc/apt/sources.list && \
     apt-get update && \
+    apt-get install sudo -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -qq \
         clamav-daemon \
         clamav-freshclam \
@@ -36,11 +37,9 @@ RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
 # volume provision
 VOLUME ["/var/lib/clamav"]
 
-USER clamav
-
 # port provision
 EXPOSE 3310
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
-CMD ["/bootstrap.sh"]
+CMD ["sudo /bootstrap.sh"]
