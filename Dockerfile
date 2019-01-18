@@ -18,10 +18,6 @@ RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-fr
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN chmod -R 777 /var
-
-RUN chmod -R 777 /var/log
-
 # initial update of av databases
 RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
     wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \
@@ -46,4 +42,4 @@ EXPOSE 3310
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
-CMD ["/bootstrap.sh"]
+CMD ["sudo /bootstrap.sh"]
