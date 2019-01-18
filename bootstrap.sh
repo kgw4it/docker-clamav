@@ -4,8 +4,8 @@
 set -m
 
 # start clam service itself and the updater in background as daemon
-freshclam -d &
-clamd &
+sudo freshclam -d &
+sudo clamd &
 
 # recognize PIDs
 pidlist=`jobs -p`
