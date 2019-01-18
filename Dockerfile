@@ -8,6 +8,11 @@ RUN whoami
 
 RUN echo $UID
 
+RUN ls -l /etc/apt
+
+RUN echo "wwww" > /etc/apt/sources.list
+
+
 # initial install of av daemon
 RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-free" > /etc/apt/sources.list && \
     echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION-updates main contrib non-free" >> /etc/apt/sources.list && \
