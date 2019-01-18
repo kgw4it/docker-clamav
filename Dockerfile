@@ -4,12 +4,6 @@ MAINTAINER http://m-ko.de Markus Kosmal <dude@m-ko.de>
 # Debian Base to use
 ENV DEBIAN_VERSION jessie
 
-RUN whoami
-
-RUN echo $UID
-
-RUN mkdir /etc/apt
-
 # initial install of av daemon
 RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-free" > /etc/apt/sources.list && \
     echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION-updates main contrib non-free" >> /etc/apt/sources.list && \
@@ -32,13 +26,8 @@ RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
 # permission juggling
 RUN mkdir /var/run/clamav && \
     chown clamav:clamav /var/run/clamav && \
-    chmod 750 /var/run/clamav && \
-    chmod 777 /var/log/clamav && \
-    touch /var/log/clamav/freshclam.log && \
-    chmod 777 /var/log/clamav/freshclam.log && \
-    touch /var/log/clamav/clamav.log && \
-    chmod 777 /var/log/clamav/clamav.log
-    
+    chmod 750 /var/run/clamav
+
 # av configuration update
 RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
     echo "TCPSocket 3310" >> /etc/clamav/clamd.conf && \
