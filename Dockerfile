@@ -37,6 +37,8 @@ RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
 # volume provision
 VOLUME ["/var/lib/clamav"]
 
+USER clamav
+
 # port provision
 EXPOSE 3310
 
