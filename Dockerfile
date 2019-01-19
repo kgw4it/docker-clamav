@@ -17,6 +17,8 @@ RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-fr
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+USER 104
+
 # initial update of av databases
 RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
     wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \
@@ -35,8 +37,6 @@ RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
 
 # volume provision
 VOLUME ["/var/lib/clamav"]
-
-USER 104
 
 # port provision
 EXPOSE 3310
