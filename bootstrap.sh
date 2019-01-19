@@ -3,6 +3,10 @@
 # presented by mko (Markus Kosmal<dude@m-ko.de>)
 set -m
 
+id
+
+id clamav
+
 # start clam service itself and the updater in background as daemon
 freshclam -d &
 clamd &
