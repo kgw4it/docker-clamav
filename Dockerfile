@@ -39,7 +39,7 @@ VOLUME ["/var/lib/clamav"]
 # port provision
 EXPOSE 3310
 
-USER clamav
+USER root
 RUN chgrp -R root /var/log/clamav
 RUN chmod -R g+w /var/log/clamav
 RUN chgrp -R root /var/lib/clamav
