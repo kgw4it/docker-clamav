@@ -17,8 +17,6 @@ RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-fr
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-USER 104:108
-
 # initial update of av databases
 RUN wget -O /var/lib/clamav/main.cvd http://database.clamav.net/main.cvd && \
     wget -O /var/lib/clamav/daily.cvd http://database.clamav.net/daily.cvd && \
@@ -44,4 +42,5 @@ EXPOSE 3310
 # av daemon bootstrapping
 USER 104:108
 ADD bootstrap.sh /
+USER 104:108
 CMD ["/bootstrap.sh"]
