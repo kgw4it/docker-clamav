@@ -39,6 +39,7 @@ VOLUME ["/var/lib/clamav"]
 # port provision
 EXPOSE 3310
 
+RUN ls -l /var/lib
 USER root
 RUN chgrp -R root /var/log/clamav
 RUN chmod -R g+w /var/log/clamav
@@ -46,6 +47,7 @@ RUN chgrp -R root /var/lib/clamav
 RUN chmod -R g+w /var/lib/clamav
 RUN chgrp -R root /run/clamav
 RUN chmod -R g+w /run/clamav
+RUN ls -l /var/lib
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
