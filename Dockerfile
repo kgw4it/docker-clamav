@@ -42,5 +42,6 @@ VOLUME ["/var/lib/clamav"]
 EXPOSE 3310
 
 # av daemon bootstrapping
+USER 104:108
 ADD bootstrap.sh /
 CMD ["/bootstrap.sh"]
