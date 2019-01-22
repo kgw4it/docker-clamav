@@ -40,6 +40,7 @@ VOLUME ["/var/lib/clamav"]
 EXPOSE 3310
 
 RUN chgrp -Rf root /var/log/clamav
+RUN chmod -R g+w /var/log/clamav
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
