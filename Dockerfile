@@ -33,8 +33,8 @@ RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
     echo "TCPSocket 3310" >> /etc/clamav/clamd.conf && \
     sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
 
-# volume provision
-VOLUME ["/var/lib/clamav"]
+# volume provision, comment out otherwise can not change group to root
+# VOLUME ["/var/lib/clamav"]
 
 # port provision
 EXPOSE 3310
