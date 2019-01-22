@@ -41,6 +41,8 @@ EXPOSE 3310
 
 RUN chgrp -Rf root /var/log/clamav
 RUN chmod -R g+w /var/log/clamav
+RUN chgrp -Rf root /var/lib/clamav
+RUN chmod -R g+w /var/lib/clamav
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
