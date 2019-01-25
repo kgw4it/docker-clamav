@@ -44,7 +44,7 @@ RUN chgrp -R root /run/clamav
 RUN chmod -R g+w /run/clamav
 
 # volume provision, comment out otherwise can not change group to root
-VOLUME ["/var/lib/clamav"]
+# VOLUME ["/var/lib/clamav"]
 
 RUN ls -l /var/lib
 
