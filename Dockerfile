@@ -42,10 +42,11 @@ RUN chgrp -R root /var/lib/clamav
 RUN chmod -R g+w /var/lib/clamav
 RUN chgrp -R root /run/clamav
 RUN chmod -R g+w /run/clamav
-RUN ls -l /var/lib
 
 # volume provision, comment out otherwise can not change group to root
 VOLUME ["/var/lib/clamav"]
+
+RUN ls -l /var/lib
 
 # port provision
 EXPOSE 3310
