@@ -26,7 +26,8 @@ RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-fr
     && if ! [ -z $HTTPProxyPort   ]; then echo "HTTPProxyPort $HTTPProxyPort" >> /etc/clamav/freshclam.conf; fi \
     && sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf \
     && chgrp -R 0 /var/log/clamav /var/lib/clamav /run/clamav /var/run/clamav \
-    && chmod -R g=u /var/log/clamav /var/lib/clamav /run/clamav /var/run/clamav
+    && chmod -R g=u /var/log/clamav /var/lib/clamav /run/clamav /var/run/clamav \
+    && chmod -R 774 /var/log/clamav /var/lib/clamav /run/clamav /var/run/clamav
 
 # volume provision, comment out otherwise can not change group to root
 VOLUME ["/var/lib/clamav"]
