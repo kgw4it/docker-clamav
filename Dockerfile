@@ -52,4 +52,7 @@ EXPOSE 3310
 
 # av daemon bootstrapping
 ADD bootstrap.sh /
+
+USER 1001
+
 CMD ["/bootstrap.sh"]
